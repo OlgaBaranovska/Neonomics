@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neonomics</title>
+    <link rel="stylesheet" href="vanilla-js-dropdown/vanilla-js-dropdown.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <form class="form" id="form">
+        <div class="form-title">Want to get in touch?</div>
+        <div class="form-field form-field--empty">
+            <select class="form-select js-form-field" id="department-select" required>
+                <option hidden disabled selected value>Choose department</option>
+                <option value="Business">Business</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Tech">Tech</option>
+            </select>
+        </div>
+        <div class="form-field form-field--empty">
+            <input id="full_name" class="form-input js-form-field" type="text" placeholder="Full Name">
+            <label for="full_name" class="form-label">Full Name</label>
+            <div class="form-error">Error, please enter a valid value</div>
+        </div>
+        <div class="form-field form-field--empty">
+            <input id="email" class="form-input js-form-field" type="text" placeholder="E-mail">
+            <label for="email" class="form-label">E-mail</label>
+            <div class="form-error">Error, please enter a valid value</div>
+        </div>
+        <div class="form-field form-field--empty">
+            <textarea id="message" class="form-textarea js-form-field" name="text" placeholder="Message"></textarea>
+            <label for="message" class="form-label">Message</label>
+            <div class="form-error">Error, please enter a valid value</div>
+        </div>
+        <div class="form-field">
+            <button id="form-submit" class="form-button" type="submit" disabled>Send</button>
+        </div>
+    </form>
+    <div class="background-wrapper">
+        <div class="background-image"></div>
+    </div>
+    <script defer src="vanilla-js-dropdown/vanilla-js-dropdown.min.js"></script>
+    <script defer src="script.js"></script>
+</body>
+</html>

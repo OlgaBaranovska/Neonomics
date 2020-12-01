@@ -1,0 +1,224 @@
+$color-primary: #202E3D;
+$color-grey-light: #FAFAFA;
+$color-grey: #C1C1C1;
+$color-active: #1F69E5;
+$color-error: #FF7352;
+$color-white: #fff;
+
+$border-primary: 1px solid $color-grey;
+$border-active: 1px solid $color-active;
+$border-error: 1px solid $color-error;
+
+$font-family-main: Helvetica;
+$font-small: normal 12px/14px $font-family-main;
+$font-medium: normal 18px/25px $font-family-main;
+$font-large: bold 35px/40px $font-family-main;
+
+$transition-slow: all 0.5s ease-out;
+
+body {
+  color: $color-primary;
+  font-family: $font-family-main;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  padding-left: 200px;
+  box-sizing: border-box;
+  width: 50%;
+  &-title {
+    font: $font-large;
+    margin-bottom: 50px;
+  }
+  &-label {
+    color: $color-grey;
+    font: $font-small;
+    position: absolute;
+    top: -8px;
+    left: 7px;
+    opacity: 1;
+    background: #fff;
+    padding: 0 3px;
+    transition: $transition-slow;
+  }
+  &-input {
+    width: 100%;
+    &:-webkit-autofill {
+      -webkit-box-shadow:0 0 0 50px #fff inset;
+    }
+  }
+  &-textarea {
+    width: 100%;
+    height: 108px;
+    resize: none;
+  }
+  &-input, &-button, .js-Dropdown-title {
+    height: 40px;
+  }
+  &-input, &-textarea, &-button, .js-Dropdown-title {
+    color: $color-primary;
+    font: normal 18px/21px $font-family-main;
+    border: $border-primary;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 7px 10px;
+    justify-content: center;
+    transition: $transition-slow;
+    &:hover:not(.form-button:disabled) {
+      border: $border-active;
+      outline: none;
+    }
+    &:focus {
+      border: $border-active;
+      outline: none;
+      + .form-label {
+        display: block;
+        color: $color-active;
+      }
+    }
+  }
+
+  &-button {
+    cursor: pointer;
+    &:hover {
+      border: $border-active;
+    }
+    &:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+  }
+  &-field {
+    margin-bottom: 8px;
+    width: 100%;
+    position: relative;
+    &--empty {
+      .form-label {
+        opacity: 0;
+        top: 0;
+      }
+    }
+    &--error {
+      .form {
+        &-label {
+          color: $color-error;
+        }
+        &-input, &-textarea, .js-Dropdown {
+          color: $color-error;
+          &:hover, &:focus {
+            + .form-label {
+              color: $color-error;
+            }
+          }
+        }
+        &-error {
+          opacity: 1;
+        }
+        &-input, &-textarea {
+          border: $border-error;
+        }
+      }
+    }
+  }
+  &-input, &-textarea {
+    &::placeholder {
+      font: $font-medium;
+      color: $color-grey;
+    }
+  }
+  &-error {
+    opacity: 0;
+    margin-top: 5px;
+    color: $color-error;
+    font: $font-small;
+  }
+}
+
+.js-Dropdown {
+  margin-bottom: 14px;
+  &-title {
+    color: $color-primary;
+    text-indent: 5px;
+    &:focus {
+      color: $color-active;
+      &:after {
+        background-image: url(../icon/arrow.svg);
+      }
+    }
+    &:after {
+      border: none;
+      display: block;
+      height: 6px;
+      width: 12px;
+      background-image: url(../icon/arrow-dark.svg);
+      background-color: transparent;
+      background-size: cover;
+    }
+  }
+  ul {
+    border: $border-primary;
+    border-radius: 3px;
+  }
+  li {
+    font: $font-medium;
+    color: $color-primary;
+    border: none;
+    padding: 6px 10px;
+    &.is-selected {
+      background-color: #fff;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: $color-grey-light;
+    }
+    &[data-index="0"] {
+      display: none;
+    }
+  }
+}
+.form-field--empty {
+  .js-Dropdown-title {
+    color: $color-grey;
+    &:after {
+      background-image: url(../icon/arrow-grey.svg);
+    }
+    &:focus {
+      color: $color-active;
+      &:after {
+        background-image: url(../icon/arrow.svg);
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate3d(1,1,1,0deg)}
+  25% { transform: rotate3d(1,1,1,90deg)}
+  50% { transform: rotate3d(1,1,1,180deg)}
+  75% { transform: rotate3d(1,1,1,270deg)}
+  100% { transform: rotate3d(1,1,1,360deg)}
+}
+
+.background {
+  &-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-image {
+    display: block;
+    height: 50vh;
+    width: 50vw;
+    background-color: $color-grey-light;
+    animation: spin 40s linear infinite;
+  }
+}
